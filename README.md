@@ -2,20 +2,25 @@
 
 In this practice, you will create a well-designed HTML+CSS+JS browser-based
 application that will allow you to play [Tic-Tac-Toe][tic-tac-toe]. It will
-combine all of the concepts that you learned in browser basics, element
-selection and handling, and storage.
+combine all of the concepts that you learned in HTML and CSS, browser basics,
+element selection and handling, and storage.
 
 ## Set up
 
-Clone the practice from the [starter].
+1. Clone the practice from the starter.
 
-Run `node app.js` from the base directory to start the server which will serve
-the static assets in the practice. Navigate to [http://localhost:5000] in your
-browser to see the __public/index.html__ file rendered.
+2. Run `npm install` to install dependencies.
+
+3. Run `node app.js` from the base directory to start the server which will
+serve the static assets in the practice.
+
+4. Navigate to [http://localhost:5000] in your browser to see the
+__public/index.html__ file rendered.
+
 
 ## Background and Context
 
-In that starter, you will find the following files:
+In the starter, you will find the following files in the __public__ directory:
 
 * __public/index.html__: The HTML file that you'll modify to structure your UI
 * __public/main.css__: The CSS file that you'll modify to style your UI
@@ -35,20 +40,30 @@ build the front-end for the game. The UI should look like this:
 
 ![sketch]
 
-The interface should include the following:
+The interface should include the following elements:
 
 * A heading in which the game will announce a winner when the game ends
   (or a tie if that happens). The heading should be horizontally center aligned.
 * A 3x3 grid for the playing surface. You should try to use either the
   _flexbox_ or _grid_ layouts to achieve this.
-* Two buttons at the bottom that are , one that reads "New Game" on the
-  left, and one that reads "Give Up" on the right. You should try to use either
+    * Each cell on the game board must use the following ids, in the correct order below:
+        |                |                |                |
+        |----------------|----------------|----------------|
+        | __"square-0"__ | __"square-1"__ | __"square-2"__ |
+        | __"square-3"__ | __"square-4"__ | __"square-5"__ |
+        | __"square-6"__ | __"square-7"__ | __"square-8"__ |
+
+* Two buttons at the bottom. One that reads exactly "New Game" on the left, and
+  one that reads exactly "Give Up" on the right. You should try to use either
   _flexbox_ or _grid_ layouts to achieve this.
 * The entire UI should be horizontally center aligned in the page.
 
 Apply paddings and margins where necessary to avoid overcrowding of components.
 Remember, whitespace positioning is just as important as the actual UI elements'
 positioning.
+
+Run `npm run test-1` when you have completed this phase to check that the HTML
+elements in your UI meet the minimum specs to move on with the project.
 
 ## Phase 2: Tracking Clicks
 
@@ -69,6 +84,8 @@ During development, you can just refresh the browser to clear the board.
 To make this game work, you'll eventually get around to checking if one of the
 players won or if there is a tie. Refer back to Week 4's project for the game
 logic.
+
+Run `npm run test-2` when you have completed this phase to check that the basic turn-taking logic meets the minimum specs.
 
 ## Phase 3: Determining Game Status
 
@@ -91,18 +108,24 @@ reminder of the logic:
 Again, refer back to your Week 4 tic-tac-toe project and make any necessary
 updates.
 
+Run `npm run test-3` when you have completed this phase to check that the basic win, loss and tie behavior meets the specs.
+
 ## Phase 4: Refactor
 
 At this point, your code may be a bit unorganized with lots of lines of code.
-Refactor your code. Keep DRY and SRP when organizing your code. You may want
-to try separating code blocks into functions or try implementing classes. With
-any approach you take, a good way to organize your code is by separating game
-logic from the UI or HTML element manipulation. That way, you can more easily
-debug an error in your code by isolating it as a game logic error or a UI error.
+Refactor your code. Keep DRY and SRP in mind when organizing your code. You may
+want to try separating code blocks into functions or try implementing classes.
+With any approach you take, a good way to organize your code is by separating
+game logic from the UI or HTML element manipulation. That way, you can more
+easily debug an error in your code by isolating it as a game logic error or a UI
+error.
+
+There are no new tests for phase 4, but run `npm run test-4` after refactoring
+to ensure that the tests for phases 1-3 are all still passing.
 
 ## Phase 5: Creating a New Game
 
-In this step, you will now create the "New Game" button. The button should
+In this step, you will now program the "New Game" button. The button should
 behave like so:
 
 * When the game status is not "won" or "tied", then the "New Game" button is
@@ -115,6 +138,9 @@ behave like so:
   * clears the board, and
   * makes it so the next click of the tic-tac-toe board is an "X"
   * (disables the "New Game" button)
+
+Run `npm run test-5` when you have completed this phase to make sure the "New Game"
+button behaves as expected.
 
 ## Phase 6: Giving Up
 
@@ -132,11 +158,20 @@ and start a new game. Here's how it should work:
 * When a game is ongoing:
   * Enable the 'Give Up" button.
 
+Run `npm run test-6` when you have completed this phase to make sure the "Give Up"
+button behaves as expected.
+
 ## Phase 7: Saving Game State
 
 In this phase, store the game state using your choice of storage so that when
 the user refreshes the page, the game isn't reset. The only way to reset should
 be by pressing the "New Game" button.
+
+Run `npm run test-7` when you have completed this phase to make sure the game
+state is persisted on refresh.
+
+Finally, run `npm run test` to make sure ALL tests are passing on your completed
+project.
 
 ## BONUS Phase
 
@@ -149,8 +184,9 @@ square, the computer will automatically play its "X". And, so on.
 
 If the computer is Player O, then it will play after you play your first "X".
 
+_There are no test specs for the bonus phase._
+
 [tic-tac-toe]: https://en.wikipedia.org/wiki/Tic-tac-toe
-[starter]: https://github.com/appacademy/practice-for-week-09-tic-tac-toe-dom-long-practice
 [sketch]: https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/ui-design.svg
 [X]: https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-x.svg
 [O]: https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-o.svg
