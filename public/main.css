@@ -1,1 +1,64 @@
 /* Your code here */
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#board {
+    max-width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.cell {
+    min-width: 30%;
+    min-height: 15vh;
+    padding: 5px;
+    border: 2px solid black;
+}
+
+/* Remove top border for the first row */
+.cell:nth-child(-n+3) {
+    border-top: none;
+}
+
+/* Remove bottom border for the last row */
+.cell:nth-child(n+7) {
+    border-bottom: none;
+}
+
+/* Remove left border for the first column */
+.cell:nth-child(3n+1) {
+    border-left: none;
+}
+
+/* Remove right border for the last column */
+.cell:nth-child(3n) {
+    border-right: none;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+#buttons button {
+    margin: 0 50px;
+}
