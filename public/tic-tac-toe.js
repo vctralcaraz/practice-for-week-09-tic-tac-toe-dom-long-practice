@@ -5,16 +5,26 @@ let board = [
     '','',''
 ];
 
+let gameOver = false;
+let turn = 'X';
+
 window.addEventListener('DOMContentLoaded', () => {
     setup();
 });
 
 const setup = () => {
-    let turn = 'X';
-    const xURL = 'https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-x.svg';
-    const oURL = 'https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-o.svg';
+    const winningHeader = document.getElementById('winning-header');
+    const winner = document.getElementById('winner');
+    const cells = document.querySelectorAll('.cell');
+    const newGameButton = document.getElementById('new-game');
+    const giveUpButton = document.getElementById('give-up');
 
-    let gameOver = false;
+    newGameButton.disabled = true;
+    giveUpButton.disabled = false;
+
+    newGameButton.addEventListener('click', () => clearGame(cells));
+    winningHeader.setAttribute('class', 'hide');
+    winner.innerHTML = '';
 
     const handleClick = e => {
         const id = e.target.id.split('-')[1];
@@ -22,35 +32,39 @@ const setup = () => {
             if(turn === 'X') {
                 console.log('X');
                 board[id] = 'X';
-                e.target.innerHTML = `<img src="${xURL}">`;
-                gameOver = checkWin('X');
+                e.target.innerHTML = `<img src="${getURL(board[id])}">`;
+                console.log(board)
+                gameOver = checkWin(board[id]);
+                console.log(gameOver);
                 turn = 'O';
             } else {
                 console.log('O');
                 board[id] = 'O';
-                e.target.innerHTML = `<img src="${oURL}">`;
-                gameOver = checkWin('O');
+                e.target.innerHTML = `<img src="${getURL(board[id])}">`;
+                console.log(board)
+                gameOver = checkWin(board[id]);
+                console.log(gameOver);
                 turn = 'X';
             }
         }
 
+        // console.log('before gameOver actions', gameOver)
         if(gameOver === 'tie') {
-            const winningHeader = document.getElementById('winning-header');
-            const winner = document.getElementById('winner');
             winner.innerHTML = 'None';
             winningHeader.setAttribute('class', 'show');
+
+            newGameButton.disabled = false;
+            giveUpButton.disabled = true;
         } else if (gameOver) {
-            const winningHeader = document.getElementById('winning-header');
-            const winner = document.getElementById('winner');
             winner.innerHTML = turn === 'X' ? 'O' : 'X';
             winningHeader.setAttribute('class', 'show');
-        }
 
+            newGameButton.disabled = false;
+            giveUpButton.disabled = true;
+        }
     }
 
-    const cell = document.querySelectorAll('.cell');
-
-    cell.forEach(selection => {
+    cells.forEach(selection => {
         selection.addEventListener('click', handleClick);
     });
 }
@@ -82,11 +96,30 @@ const checkWin = (turn) => {
             return true;
         }
     }
-
     if(check.length >= 5) {
         return 'tie';
     }
-
     return false;
-
 }
+
+const clearGame = els => {
+    board.length = 0;
+    board = [
+        '','','',
+        '','','',
+        '','',''
+    ];
+
+    els.forEach( el => {
+        el.innerHTML = '';
+    });
+
+    gameOver = false;
+    turn = 'X';
+
+    setup();
+
+    console.log('new game set');
+}
+
+const getURL = turn => `https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-${turn.toLowerCase()}.svg`
