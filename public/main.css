@@ -16,7 +16,7 @@ h3 {
 }
 
 #board {
-    max-width: 50%;
+    max-width: 75%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -25,8 +25,10 @@ h3 {
 }
 
 .cell {
-    min-width: 30%;
-    min-height: 15vh;
+    width: 30%;
+    height: 17vh;
+    text-align: center;
+    vertical-align: middle;
     padding: 5px;
     border: 2px solid black;
 }
@@ -61,4 +63,9 @@ h3 {
 
 #buttons button {
     margin: 0 50px;
+}
+
+.cell img {
+    height: 100px;
+    width: 100px;
 }
