@@ -23,6 +23,15 @@ const setup = () => {
     giveUpButton.disabled = false;
 
     newGameButton.addEventListener('click', () => clearGame(cells));
+    giveUpButton.addEventListener('click', function() {
+        gameOver = true;
+        winner.innerHTML = turn === 'X' ? 'O' : 'X';
+        winningHeader.setAttribute('class', 'show');
+
+        newGameButton.disabled = false;
+        giveUpButton.disabled = true;
+    });
+
     winningHeader.setAttribute('class', 'hide');
     winner.innerHTML = '';
 
